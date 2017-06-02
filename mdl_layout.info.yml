@@ -1,0 +1,8 @@
+type: module
+name: Layout component
+description: "The Material Design Lite (MDL) layout component is a comprehensive approach to page layout."
+package: Material Design Lite
+core: 8.x
+dependencies:
+  - block
+  - field_group

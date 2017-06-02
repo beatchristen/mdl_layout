@@ -1,0 +1,70 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+
+function mdl_layout_theme() {
+  $items = [
+    'mdl_layout_tab_panel' => [
+      'render element' => 'element',
+      'file' => 'templates/theme.inc',
+    ],
+    'mdl_layout_tabbar' => [
+      'render element' => 'element',
+      'file' => 'templates/theme.inc',
+    ],
+    'mdl_tabs_tabbar' => [
+      'render element' => 'element',
+      'file' => 'templates/theme.inc',
+    ],
+    'block__mdl_layout_tab_bar_block' => [
+      'template' => 'block-without-a-div-wrapper',
+      'preprocess functions' => [
+        'template_preprocess_block'
+      ],
+    ],
+    'mdl_layout_inset_persistent_bottomsheet' => [
+      'render element' => 'element',
+      'file' => 'templates/theme.inc',
+    ],
+    'mdl_layout_bottomsheet' => [
+      'render element' => 'element',
+      'file' => 'templates/theme.inc',
+    ],
+  ];
+
+  return $items;
+}
+
+/**
+ * @Implements hook_form_alter
+ * - move 'edit-actions' to the 'mdl-layout__bottomsheet--inset-persistent', if there is one!
+ */
+function mdl_layout_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  foreach ($form['#fieldgroups'] as $name => $fieldgroup) {
+    // check if we shall "import" the edit-actions buttons
+    if ($fieldgroup->format_type !== 'mdl_layout_bottomsheet') continue;
+
+    $style = $fieldgroup->format_settings['style'];
+    if ($style != 'mdl-layout__bottomsheet--inset-persistent') continue;
+
+    $form['#attributes']['class'][] = 'mdl-layout__container';
+    $form_state->set('mdl-layout-bottomsheet-id', $fieldgroup->format_settings['id']);
+    foreach ($fieldgroup->format_settings['import'] as $import) {
+      if (isset($form[$import]) && $import=='actions') {
+        $form[$import]['#process'][] = 'mdl_layout_migrate_fieldgroup_to_bottomsheet';
+      }
+      if ($import=='advanced') {
+        $form['advanced']['#attributes']['data-mdl-layout-bottomsheet-id'] = $fieldgroup->format_settings['id'];
+      }
+    }
+  }
+}
+
+/**
+ * Mark this field_group for migrating to the bottomsheet.
+ */
+function mdl_layout_migrate_fieldgroup_to_bottomsheet(&$element, FormStateInterface $form_state, &$complete_form) {
+  $id =  $form_state->get('mdl-layout-bottomsheet-id');
+  $element['#attributes']['data-mdl-layout-bottomsheet-id'] = $id;
+  return $element;
+}

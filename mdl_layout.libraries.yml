@@ -1,0 +1,20 @@
+
+tabbar:
+  css:
+    component:
+      css/mdl-layout__tab.css: {}
+      # css/mdl-layout__tabbar.css: {} # in case we'll need it...
+  js:
+    js/mdl-layout-tab.js: {}
+
+tabs_tabbar:
+  js:
+    js/mdl-tabs-tabbar.js: {}
+
+bottomsheet:
+  css:
+    component:
+      css/mdl-layout__bottomsheet.css: {}
+  js:
+    js/bottomsheet.js: {}
+    js/mdl-layout-bottomsheet.js: {}

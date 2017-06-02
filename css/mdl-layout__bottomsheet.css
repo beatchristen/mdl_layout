@@ -1,0 +1,87 @@
+
+.mdl-mini-footer.mdl-layout__bottomsheet {
+    background: white;
+    padding: 0;
+    border: 0 solid grey;
+    border-top-width: 1px;
+    max-height: 67px;
+}
+
+.mdl-mini-footer.mdl-layout__bottomsheet--inset-persistent {
+    background: white;
+    padding: 0;
+    border: 0 solid grey;
+    border-top-width: 1px;
+    max-height: 67px;
+}
+
+/* import from dead mdlui */
+button.mdl-layout__bottomsheet__button.mdl-button--fab {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1;
+}
+
+.mdl-layout__bottomsheet {
+    position: absolute;
+    right: 32px;
+    width: 300px;
+    bottom: 0;
+    background-color: rgb(255,255,255);
+    opacity: 0;
+    transition: all 450ms cubic-bezier(0.32,1,0.23,1) 0ms;
+
+    padding: 12px;
+    border: 1px solid grey;
+    border-bottom-width: 0;
+}
+
+.mdl-layout__bottomsheet.mdl-layout__bottomsheet--active  {
+    display: block;
+    position: fixed;
+    height: 65%;
+    opacity: 1;
+
+    box-shadow: -3px -3px 14px 6px rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12)
+}
+
+.mdl-layout__bottomsheet.mdl-layout__bottomsheet--active  .btn-close {
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    outline: 0 none;
+    transform: scale(1,1);
+}
+
+@media screen and (min-width: 1600px) {
+    .mdl-mini-footer.mdl-layout__bottomsheet--inset-persistent,
+    .mdl-layout__content {
+        max-width: 1280px;
+    }
+
+    .mdl-button.mdl-layout__bottomsheet__button {
+        display: none;
+    }
+
+    .mdl-layout__bottomsheet {
+        opacity: 1;
+        width: auto;
+        height: auto !important;
+        left: 1280px;
+        right: 0;
+        top: 111px;
+        bottom: 0;
+        position: fixed;
+    }
+}
+
+BODY .mdl-layout__bottomsheet.mdl-layout__bottomsheet--normal {
+    background: darkolivegreen;
+}
+
+BODY .mdl-mini-footer.mdl-layout__bottomsheet--inset-persistent {
+    background: greenyellow;
+}

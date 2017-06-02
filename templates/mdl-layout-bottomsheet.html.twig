@@ -1,0 +1,41 @@
+{% if style=='mdl-layout__bottomsheet' or style == 'mdl-layout__bottomsheet--tabbar' %}
+<div {{ attributes }}>
+    {% if style=='mdl-layout__bottomsheet--tabbar' %}
+
+        <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect"><!-- mdl-tabs starts here -->
+            {{ children }}
+        </div><!-- end of mdl-tabs -->
+    {% else %}
+        {{ children }}
+    {% endif %}
+</div><!-- end of main-bottomsheet div -->
+<button {{ button_attributes }}>
+    <i class="material-icons">{{ button_icon }}</i>
+</button>
+
+{% elseif style == 'mdl-layout__bottomsheet--inset-persistent' %}
+    {# core/themes/stable/templates/form/details.html.twig #}
+    <section{{ attributes }}>
+        {%
+        set summary_classes = [
+        required ? 'js-form-required',
+        required ? 'form-required',
+        ]
+        %}
+        {%- if title -%}
+            <summary{{ summary_attributes.addClass(summary_classes) }}>{{ title }}</summary>
+        {%- endif -%}
+
+        {% if errors %}
+            <div>
+                {{ errors }}
+            </div>
+        {% endif %}
+
+        {{ description }}
+        {{ children }}
+        {{ value }}
+    </section>
+{% else %}
+    unknown bottomsheet style={{ style }} in bottomsheet #{{ attributes.id }}
+{% endif %}

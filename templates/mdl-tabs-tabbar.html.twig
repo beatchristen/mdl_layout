@@ -1,0 +1,15 @@
+
+
+{% if items|length > 0 %}
+    <div class="mdl-tabs__tab-bar">
+        {% set is_active = 'is-active' %}
+        {% for key, item in items %}
+            <a href="{{ key }}" class="mdl-tabs__tab {% if is_active %} {{ is_active }}{% endif %}">
+                {{ item }}
+                <!--img class="bm-tabs__tab--icon" src="/sites/all/modules/bm/assets/icon-template.svg" alt="Templates"-->
+            </a>
+            {% set is_active = '' %}
+        {% endfor %}
+    </div>
+    {{ attach_library('mdl_layout/tabbar') }}
+{% endif %}

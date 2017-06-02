@@ -1,0 +1,11 @@
+{% if items|length > 0 %}
+    <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        {% set is_active = 'is-active' %}
+        {% for key, item in items %}
+            <a href="{{ key }}" class="mdl-layout__tab {% if is_active %} {{ is_active }}{% endif %}">{{ item }}</a>
+            {% set is_active = '' %}
+        {% endfor %}
+    </div>
+
+    {{ attach_library('mdl_layout/tabbar') }}
+{% endif %}

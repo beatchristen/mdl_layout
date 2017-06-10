@@ -4,7 +4,7 @@ Material Design Lite Layout components integrated with Drupal 8.
 
 - see https://getmdl.io/components/index.html#layout-section for more information about MDL
 - see https://drupal.org/ for more information about Drupal.
-- tested with theme https://github.com/andreapaiola/d8mdl[test] link hier
+- tested with [d8mdl theme](https://github.com/andreapaiola/d8mdl)
 
 ##  Scrollable Tabs
 
